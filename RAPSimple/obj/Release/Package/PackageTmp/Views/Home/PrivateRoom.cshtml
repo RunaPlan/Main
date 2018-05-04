@@ -1,0 +1,20 @@
+﻿@using RAPSimple.Controllers
+@{
+    ViewBag.Title = "PrivateRoom";
+}
+
+<h2>Личный кабинет  @User.Identity.Name</h2>
+@{
+    //ViewBag.Email = User.Identity.Name;
+    ViewBag.ID = ProfileController.GetUserID(User.Identity.Name);
+}
+@if (ViewBag.ID == "-1")
+{
+    <li>@Html.ActionLink("Создать профиль", "Create", "Profile")</li>
+}
+else
+{
+    <li>@Html.ActionLink("Редактировать профиль", "Edit", "Profile", new { sid = ViewBag.ID }, null)</li>
+    <li>@Html.ActionLink("Мои группы", "Edit", "Profile", new { sid = ViewBag.ID }, new { onclick = "javascript:return false;" })</li>
+    <li>@Html.ActionLink("Мои мероприятия", "Edit", "Profile", new { sid = ViewBag.ID }, new { onclick = "javascript:return false;" })</li>
+}
