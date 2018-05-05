@@ -1,0 +1,70 @@
+﻿@model PagedList.IPagedList<RAPSimple.Models.Event>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "MyEvents";
+}
+
+<h2>Мои мероприятия</h2>
+
+<p>
+    @Html.ActionLink("Создать новое ", "Create", new { parentID = @ViewBag.ParentID }, null)
+</p>
+@using (Html.BeginForm("Index", "Event", FormMethod.Get))
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.ActionLink("Описание", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>*@
+        <th>
+            Название
+        </th>
+        @*<th>
+            @Html.ActionLink("Enrollment Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>*@
+        <th>
+            Начало
+        </th>
+        <th>
+            Окончание
+        </th>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.ActionLink("Редактировать", "Edit", new { id = item.ID }, new { onclick = "javascript:return false;" }) |
+                @Html.ActionLink("Подробнее", "Details", new { id = item.ID }, new { onclick = "javascript:return false;" }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.ID }, new { onclick = "javascript:return false;" }) |
+                @Html.ActionLink("Участники", "Delete", new { id = item.ID }, new { onclick = "javascript:return false;" }) |
+                @Html.ActionLink("Задачи", "Delete", new { id = item.ID }, new { onclick = "javascript:return false;" }) |
+                @Html.ActionLink("Затраты", "Delete", new { id = item.ID }, new { onclick = "javascript:return false;" }) |
+                @Html.ActionLink("План-график", "Delete", new { id = item.ID }, new { onclick = "javascript:return false;" }) |
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

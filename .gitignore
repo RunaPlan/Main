@@ -129,7 +129,11 @@ publish/
 #*.pubxml
 
 # NuGet Packages Directory
+<<<<<<< HEAD
 #packages/*
+=======
+packages/*
+>>>>>>> 1d94d2c... Upload Start Project
 ## TODO: If the tool you use requires repositories.config
 ## uncomment the next line
 #!packages/repositories.config
