@@ -17,4 +17,5 @@ else
     <li>@Html.ActionLink("Редактировать профиль", "Edit", "Profile", new { sid = ViewBag.ID }, null)</li>
     <li>@Html.ActionLink("Мои группы", "Index", "Event", new { sid = ViewBag.ID }, new { onclick = "javascript:return false;" })</li>
     <li>@Html.ActionLink("Мои мероприятия", "Index", "Event", new { sid = ViewBag.ID }, null)</li>
+    <li>@Html.ActionLink("Мои приглашения на мероприятия", "Index", "Invite", new { sid = ViewBag.ID }, null)</li>
 }

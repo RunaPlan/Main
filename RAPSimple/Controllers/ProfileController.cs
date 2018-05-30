@@ -97,6 +97,10 @@ namespace RAPSimple.Controllers
         // GET: Student/Create
         public ActionResult Create()
         {
+ //           Profile prf = new Profile();
+ //           prf.Email = User.Identity.Name;
+            ViewBag.Email = User.Identity.Name;
+//            return View(prf);
             return View();
         }
 
@@ -105,7 +109,7 @@ namespace RAPSimple.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "LastName, FirstMidName, Details, MobilePhone, Email,CommonSkill, TrackingSkill, BikeSkill, RaftSkill")]Profile Profile, HttpPostedFileBase upload)
+        public ActionResult Create([Bind(Include = "LastName, FirstMidName, Details, MobilePhone, Email, CommonSkill, TrackingSkill, BikeSkill, RaftSkill")]Profile Profile, HttpPostedFileBase upload)
         {
             try
             {
@@ -125,6 +129,7 @@ namespace RAPSimple.Controllers
                         }
                         Profile.Files = new List<File> { avatar };
                     }
+                    Profile.Email = User.Identity.Name;  // поле подставляется автоматически из идентификации
                     db.Profiles.Add(Profile);
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -138,8 +143,7 @@ namespace RAPSimple.Controllers
             return View(Profile);
         }
 
-
-        // GET: Student/Edit/5
+        // GET
         public ActionResult Edit(string sid)
         {
             int id;
@@ -156,7 +160,7 @@ namespace RAPSimple.Controllers
             return View(Profile);
         }
 
-        // POST: Student/Edit/5
+        // POST:
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Edit")]

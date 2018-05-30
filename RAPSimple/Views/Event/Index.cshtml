@@ -54,7 +54,8 @@
                 @Html.ActionLink("Редактировать", "Edit", new { id = item.ID }, new { onclick = "javascript:return false;" }) |
                 @Html.ActionLink("Подробнее", "Details", new { id = item.ID }, new { onclick = "javascript:return false;" }) |
                 @Html.ActionLink("Удалить", "Delete", new { id = item.ID }, new { onclick = "javascript:return false;" }) |
-                @Html.ActionLink("Участники", "Delete", new { id = item.ID }, new { onclick = "javascript:return false;" }) |
+                @Html.ActionLink("Пригласить", "Invite", new { id = item.ID }, null) |
+                @Html.ActionLink("Участники", "Index", "Invite", new { id = item.ID }, null) |
                 @Html.ActionLink("Задачи", "Delete", new { id = item.ID }, new { onclick = "javascript:return false;" }) |
                 @Html.ActionLink("Затраты", "Delete", new { id = item.ID }, new { onclick = "javascript:return false;" }) |
                 @Html.ActionLink("План-график", "Delete", new { id = item.ID }, new { onclick = "javascript:return false;" }) |

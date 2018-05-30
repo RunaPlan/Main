@@ -67,10 +67,17 @@ namespace RAPSimple.Models
         [Column("MaxGroup")]
         public int MaxGroup { get; set; }
 
+        [Display(Name = "Список приглашенных")]
+        //       [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
+        [DataType(DataType.MultilineText)]
+        [Column("InvitationList")]
+        public string InvitationList { get; set; }
+
         // owner (who has created this item)
         public int ProfileId { get; set; }
-        public virtual Profile Profile { get; set; }
+//        public virtual Profile Profile { get; set; }
 //        public virtual ICollection<File> Files { get; set; } перестроить схему общения с файлами
-
+        public virtual ICollection<Invite> Invites { get; set; }
+        public virtual ICollection<WayPoint> WayPoints { get; set; }
     }
 }

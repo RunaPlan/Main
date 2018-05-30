@@ -30,6 +30,8 @@ namespace RAPSimple.DAL
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<File> Files { get; set; }
         public DbSet<Event> Events { get; set; }
+        public DbSet<Invite> Invites { get; set; }
+        public DbSet<WayPoint> WayPoints { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -39,11 +41,15 @@ namespace RAPSimple.DAL
       .HasRequired(a => a.Profile)
       .WillCascadeOnDelete(false);
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-#endif
 
+                       
+#endif
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Entity<Profile>().ToTable("Profile");
             modelBuilder.Entity<Event>().ToTable("Events");
             modelBuilder.Entity<File>().ToTable("File");
+            modelBuilder.Entity<Invite>().ToTable("Invite");
+            modelBuilder.Entity<WayPoint>().ToTable("WayPoint");
 
         }
     }
