@@ -70,6 +70,12 @@ namespace RAPSimple.Models
 
         public virtual ICollection<File> Files { get; set; }
         public virtual ICollection<Event> Events { get; set; }
+        public virtual ICollection<Group> Groups { get; set; }
+        
+        public Profile()
+        {
+            Groups = new List<Group>();
+        }
         //public virtual ICollection<File> Files { get; set; }
         //        public virtual ICollection<FilePath> FilePaths { get; set; }
 

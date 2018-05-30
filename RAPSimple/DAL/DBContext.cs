@@ -46,5 +46,7 @@ namespace RAPSimple.DAL
             modelBuilder.Entity<File>().ToTable("File");
 
         }
+
+        public System.Data.Entity.DbSet<RAPSimple.Models.Group> Groups { get; set; }
     }
 }
